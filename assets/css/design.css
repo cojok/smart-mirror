@@ -13,6 +13,7 @@ body {
     -ms-transition: opacity .5s ease-in-out;
     -o-transition: opacity .5s ease-in-out;
     transition: opacity .5s ease-in-out;
+    margin-right: 20px;
 }
 .icon {
     width: 50px;
@@ -29,6 +30,19 @@ body {
     position: fixed;
     left: 15px;
     top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+}
+
+.date {
+    font-size: 18px;
 }
 
 .location {
