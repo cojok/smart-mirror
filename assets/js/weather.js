@@ -2,8 +2,8 @@ function weather(latLng) {
 
     let xhr = new XMLHttpRequest();
     // xhr.open('GET', 'https://api.darksky.net/forecast/483629746b8ebbc0a37c450b5a7cf59f/48.1351,11.5820');
-    xhr.open('GET', 'https://api.darksky.net/forecast/483629746b8ebbc0a37c450b5a7cf59f/'+latLng.lat+','+latLng.lng+'?units=auto');
-    // xhr.open('GET', 'https://api.darksky.net/forecast/483629746b8ebbc0a37c450b5a7cf59f/48.2081743,16.3738189?units=auto');
+    // xhr.open('GET', 'https://api.darksky.net/forecast/483629746b8ebbc0a37c450b5a7cf59f/'+latLng.lat+','+latLng.lng+'?units=auto');
+    xhr.open('GET', 'https://api.darksky.net/forecast/483629746b8ebbc0a37c450b5a7cf59f/48.2081743,16.3738189?units=auto');
     xhr.onload = function () {
         if (xhr.status === 200) {
             // console.log('Forecast.io data ' + xhr.responseText);
