@@ -8,7 +8,8 @@ let win
 
 function createWindow () {
     // Create the browser window.
-    win = new BrowserWindow({width: 800, height: 600});
+    // win = new BrowserWindow({width: 800, height: 600});
+    win = new BrowserWindow({show: false}   );
 
     // win.setFullScreen(true);
 
@@ -19,6 +20,9 @@ function createWindow () {
         slashes: true
     }));
 
+    win.once('ready-to-show', () => {
+        win.show()
+})
     // Open the DevTools.
      //win.webContents.openDevTools();
     // Emitted when the window is closed.
@@ -43,6 +47,7 @@ app.on('window-all-closed', () => {
     app.quit()
 }
 })
+
 
 app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
