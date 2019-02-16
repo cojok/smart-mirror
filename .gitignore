@@ -1,5 +1,0 @@
-.DS_Store
-node_modules/
-.idea/
-/test-darwin-x64/
-test-darwin-x64/*
