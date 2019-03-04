@@ -9,7 +9,7 @@ let win
 function createWindow () {
     // Create the browser window.
     // win = new BrowserWindow({width: 800, height: 600});
-    win = new BrowserWindow(   );
+    win = new BrowserWindow(  {webPreferences: {nodeIntegration: true}} );
 
     win.setFullScreen(true);
 
