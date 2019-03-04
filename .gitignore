@@ -5,3 +5,4 @@ node_modules/
 test-darwin-x64/*
 .vscode/
 package-lock.json
+public/
