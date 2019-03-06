@@ -1,3 +1,5 @@
+import '@babel/polyfill'
+
 import Weather from './components/Weather'
 import Clock from './components/Clock'
 

@@ -1,11 +1,13 @@
 import axiso from 'axios'
+import { capitalize, removeElement } from '../helpers/HelperFunctions';
 class Weather {
   constructor(props) {
       this.state = {
           city: props.city || 'München',
           unit: props.unit || 'metric',
           temp: null,
-          icon: null
+          icon: null,
+          description: null
       }
   }
 
@@ -13,7 +15,11 @@ class Weather {
   render() {
      return `
         <div class="weather-wrapper">
-            <div class="today" style="background-image: url(${this.state.icon});">Heute: ${this.state.temp} <sup>o</sup>C
+            <div class="today" style="background-image: url(${this.state.icon});">
+                Heute: ${this.state.temp} <sup>o</sup>C
+                <p class="weather__description">
+                  ${this.state.description}
+                </p>
                 <!--svg class="icon weather-icon">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/svg/sun.svg#Layer_1"></use>
                 </svg-->
@@ -42,9 +48,10 @@ class Weather {
       .then( response => {
         // handle success
         console.log(response.data)
-        // const data = response.data
-        this.state.icon = `http://openweathermap.org/img/w/${response.data.weather[0].icon}.png`
-        this.state.temp = Math.round(response.data.main.temp)
+        const data = response.data
+        this.state.icon = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`
+        this.state.temp = Math.round(data.main.temp)
+        this.state.description = capitalize(data.weather[0].description)
         this.update()
       })
       .catch(error => {
@@ -57,12 +64,15 @@ class Weather {
   }
 
   update() {
-    const element = 
+    removeElement(document.querySelector('#app .weather .weather-wrapper'))
     document.querySelector('#app .weather').insertAdjacentHTML('afterbegin',this.render())
   }
 
   showWeather() {
     this.getWeather()
+    setInterval(() => {
+      this.getWeather()
+    }, 1000 * 60 * 60)
   }
 }
 

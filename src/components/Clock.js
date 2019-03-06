@@ -1,4 +1,5 @@
 import { timingSafeEqual } from "crypto"
+import { removeElement } from "../helpers/HelperFunctions";
 
 class Clock {
   
@@ -19,7 +20,11 @@ class Clock {
   }
 
   update () {
-    document.querySelector('#app .date-time').insertAdjacentHTML('afterbegin', this.render())
+    this.state.time = this.displayTime()
+    this.state.date = this.date()
+    removeElement(document.querySelector('#app .date-time .time'))
+    removeElement(document.querySelector('#app .date-time .date'))
+    document.querySelector('#app .date-time').insertAdjacentHTML('afterbegin',this.render())
   }
 
    displayTime () {
@@ -43,13 +48,7 @@ class Clock {
 
       // Assign time format to variable. If you want to change how time is displayed do it here
       // Example time = h + ":" + m
-      const time = h + ":" + m + ":" + s
-
-      // Print your clock to an element.
-      // document.getElementsByClassName("clock")[0].innerHTML = time
-
-      // Refreshes clock every second. If you're just using minutes change to 60000
-      setTimeout(this.displayTime, 1000)
+      const time = `${h}:${m}:${s}`
 
       return time
 }
@@ -63,9 +62,10 @@ class Clock {
 }
 
   showTimer () {
-    this.state.time = this.displayTime()
-    this.state.date = this.date()
     this.update()
+    setInterval(() => {
+      this.update()
+    }, 1000)
   }
  
 }
